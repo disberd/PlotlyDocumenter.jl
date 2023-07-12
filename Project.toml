@@ -1,0 +1,13 @@
+name = "PlotlyDocumenter"
+uuid = "9b90f1cd-2639-4507-8b17-2fbe371ceceb"
+authors = ["Alberto Mengali <disberd@gmail.com>"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.9"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

@@ -21,7 +21,7 @@ PlotlyLightExt = "PlotlyLight"
 HypertextLiteral = "0.9"
 PackageExtensionCompat = "1"
 Downloads = "1"
-julia = "1.6"
+julia = "1.8"
 
 [extras]
 PlotlyBase = "a03496cd-edff-5a9b-9e67-9cda94a718b5"

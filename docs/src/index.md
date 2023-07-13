@@ -22,6 +22,15 @@ p = Plot(scatter(;y = rand(5)))
 to_documenter(p)
 ```
 
+## PlotlyJS
+```@example
+using PlotlyDocumenter
+using PlotlyJS
+
+p = plot(scatter(;y = rand(5)))
+to_documenter(p)
+```
+
 ## PlotlyLight
 ```@example
 using PlotlyDocumenter

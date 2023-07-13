@@ -2,7 +2,7 @@ module PlotlyBaseExt
     using PlotlyDocumenter
     using PlotlyBase
 
-    function PlotlyDocumenter.to_documenter(p::Plot; kwargs...)
+    function PlotlyDocumenter.to_documenter(p::PlotlyBase.Plot; kwargs...)
         data = json(p.data)
         layout = json(p.layout)
         config = json(p.config)

@@ -70,14 +70,14 @@ This package supports the following types as `P`:
 - `id`: The id to be given to the div containing the plot. Defaults to a random string of 10 alphanumeric characters
 - `version`: Version of plotly.js to use. Defaults to the latest plotly version
 - `classes`: A Vector of Strings representing classes to assign the div containing the plot. Defaults to an empty vector
-- `style`: An object containing a list of styles that are applied inline to the\
-plot object. Defaults to an empty NTuple. Supports the synthax of\
+- `style`: An object containing a list of styles that are applied inline to the \
+plot object. Defaults to an empty NTuple. Supports the synthax of \
 [HypertextLiteral](https://juliapluto.github.io/HypertextLiteral.jl/stable/attribute/#Pairs-and-Dictionaries)
 
 # Notes
 - The package does not reexport any plotting packages, so the desired plotting package must be brought in to scope independently.
-- The package currently only supports fetching the plotly library from CDN, so\
-it does not support local version of Plotly (even though they are supported by\
+- The package currently only supports fetching the plotly library from CDN, so \
+it does not support local version of Plotly (even though they are supported by \
 PlotlyLight for example)
 """
 function to_documenter(x::P) where P

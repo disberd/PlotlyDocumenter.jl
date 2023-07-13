@@ -27,22 +27,28 @@ change_default_plotly_version!(v) = PLOTLY_VERSION[]  = VersionNumber(v)
 function _to_documenter(;data, layout, config, version = PLOTLY_VERSION[], id = randstring(10), classes = [], style = (;))
     js = HypertextLiteral.JavaScript
     v = js(string(version))
-    data = js(data)
-    layout = js(layout)
-    config = js(config)
+    plot_obj = (;
+        data = js(data),
+        layout = js(layout),
+        config = js(config),
+    )
     return @htl("""
     <div id=$id class=$classes style=$style></div>
     <script>
     (async function() {
         const {default: Plotly} = await import("https://esm.sh/plotly.js-dist-min@$v")
-        Plotly.newPlot($(js(id)), $data, $layout, $config)
+        const PLOT = document.getElementById($(id))
+        const plot_obj = $plot_obj
+        Plotly.newPlot(PLOT, plot_obj)
+
+        // If width is not specified, set it to 100%
+        PLOT.style.width = plot_obj.layout.width ? "" : "100%"
+        
+        // For the height we have to also put a fixed value in case the plot is put on a non-fixed-size container (like the default wrapper)
+        PLOT.style.height = plot_obj.layout.height ? "" :
+		parent.clientHeight == 0 ? "500px" : "100%"
     })()
     </script>
-    <style>
-        div #$id {
-            min-height: 500px;
-        }
-    </style>
     """)
 end
 

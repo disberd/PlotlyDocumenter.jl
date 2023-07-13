@@ -1,5 +1,10 @@
 using PlotlyDocumenter
 using Documenter
+using PlotlyBase
+using PlotlyLight
+
+@info methods(to_documenter)
+
 
 DocMeta.setdocmeta!(PlotlyDocumenter, :DocTestSetup, :(using PlotlyDocumenter); recursive=true)
 

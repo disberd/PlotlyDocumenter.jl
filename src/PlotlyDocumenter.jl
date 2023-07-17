@@ -34,9 +34,8 @@ function _to_documenter(;data, layout, config, version = PLOTLY_VERSION[], id = 
     )
     return @htl("""
     <div id=$id class=$classes style=$style></div>
-    <script>
-    (async function() {
-        const {default: Plotly} = await import("https://esm.sh/plotly.js-dist-min@$v")
+    <script type="module">
+        import Plotly from "https://esm.sh/plotly.js-dist-min@$v"
         const PLOT = document.getElementById($(id))
         const plot_obj = $plot_obj
         Plotly.newPlot(PLOT, plot_obj)
@@ -45,9 +44,7 @@ function _to_documenter(;data, layout, config, version = PLOTLY_VERSION[], id = 
         PLOT.style.width = plot_obj.layout.width ? "" : "100%"
         
         // For the height we have to also put a fixed value in case the plot is put on a non-fixed-size container (like the default wrapper)
-        PLOT.style.height = plot_obj.layout.height ? "" :
-		parent.clientHeight == 0 ? "500px" : "100%"
-    })()
+        PLOT.style.height = plot_obj.layout.height ? "" : "100%"
     </script>
     """)
 end
@@ -55,7 +52,7 @@ end
 # Define the function name. Methods are added in the extension packages
 """
     to_documenter(p::P; id, version)
-Take a plot object `p` and returns an output that is showable as HTML inside pages generated from Documenter.jl
+Take a plot object `p` and returns an output that is showable as HTML inside pages generated from Documenter.jl.
 This function currently works correctly inside `@example` blocks from Documenter.jl if called as last statement/command.
 Check the package [documentation](https://disberd.github.io/PlotlyDocumenter.jl) for seeing it in action.
 

@@ -27,7 +27,7 @@ to_documenter(p)
 using PlotlyDocumenter
 using PlotlyJS
 
-p = plot(scatter(;y = rand(5)))
+p = plot(scatter(;y = rand(5)), Layout(height = 700))
 to_documenter(p)
 ```
 

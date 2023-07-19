@@ -1,4 +1,5 @@
 using PlotlyDocumenter
+using PlotlyDocumenter: change_default_plotly_version, DEFAULT_VERSION
 using Test
 using PlotlyBase
 using PlotlyLight
@@ -18,8 +19,10 @@ using PlotlyJS
     p_light = PlotlyLight.Plot(;y, type="scatter")
 
     for p in (p_base,p_light, p_js)
+        change_default_plotly_version(DEFAULT_VERSION)
         o = to_documenter(p) |> to_str
         @test contains(o, "Plotly.newPlot")
+        @test contains(o, "@$DEFAULT_VERSION")
         id = "abcdefghil"
         o = to_documenter(p; id) |> to_str
         @test contains(o, "id='$id'")
@@ -30,5 +33,9 @@ using PlotlyJS
         @test contains(o, "class='asd lol'")
         o = to_documenter(p; style = (;min_height = "500px", color = "red")) |> to_str
         @test contains(o, "style='min-height: 500px; color: red;'")
+
+        change_default_plotly_version(version)
+        o = to_documenter(p) |> to_str
+        @test contains(o, "@$version")
     end
 end

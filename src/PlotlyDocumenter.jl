@@ -16,13 +16,14 @@ function latest_plotlyjs_version()
     get_semver(read(file, String))
 end
 
-const PLOTLY_VERSION = Ref(try
-    latest_plotlyjs_version()
-catch
-    v"2.24.2"
-end)
+const DEFAULT_VERSION = v"2.24.2"
+const PLOTLY_VERSION = Ref(DEFAULT_VERSION)
 
-change_default_plotly_version!(v) = PLOTLY_VERSION[]  = VersionNumber(v)
+"""
+    change_default_plotly_version(version::String)
+Change the plotly version that is used by default to render Plotly plots using [`to_documenter`](@ref)
+"""
+change_default_plotly_version(v) = PLOTLY_VERSION[]  = VersionNumber(v)
 
 function _to_documenter(;data, layout, config, version = PLOTLY_VERSION[], id = randstring(10), classes = [], style = (;))
     js = HypertextLiteral.JavaScript
@@ -56,7 +57,7 @@ Take a plot object `p` and returns an output that is showable as HTML inside pag
 This function currently works correctly inside `@example` blocks from Documenter.jl if called as last statement/command.
 Check the package [documentation](https://disberd.github.io/PlotlyDocumenter.jl) for seeing it in action.
 
-The object returned as ouptut will generate an plotly plot directly in HTML that is interactable from the documentation page.
+The object returned as output, when shown as `text/html`, will generate a plotly plot can be interacted with directly in the documentation page.
 
 This package supports the following types as `P`:
 - `Plot` from PlotlyBase
@@ -65,7 +66,10 @@ This package supports the following types as `P`:
 
 # Keyword Arguments
 - `id`: The id to be given to the div containing the plot. Defaults to a random string of 10 alphanumeric characters
-- `version`: Version of plotly.js to use. Defaults to the latest plotly version
+- `version`: Version of plotly.js to use. Defaults to version \
+$(DEFAULT_VERSION), but can be overridden by providing `version` as a string. To \
+change the default version, use the unexported `change_default_plotly_version` \
+function.
 - `classes`: A Vector of Strings representing classes to assign the div containing the plot. Defaults to an empty vector
 - `style`: An object containing a list of styles that are applied inline to the \
 plot object. Defaults to an empty NTuple. Supports the synthax of \

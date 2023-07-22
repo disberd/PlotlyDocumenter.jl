@@ -23,7 +23,7 @@ const PLOTLY_VERSION = Ref(DEFAULT_VERSION)
     change_default_plotly_version(version::String)
 Change the plotly version that is used by default to render Plotly plots using [`to_documenter`](@ref)
 """
-change_default_plotly_version(v) = PLOTLY_VERSION[]  = VersionNumber(v)
+change_default_plotly_version(v) = PLOTLY_VERSION[]  = VersionNumber(string(v))
 
 function _to_documenter(;data, layout, config, version = PLOTLY_VERSION[], id = randstring(10), classes = [], style = (;))
     js = HypertextLiteral.JavaScript

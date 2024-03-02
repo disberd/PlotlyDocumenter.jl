@@ -1,9 +1,9 @@
 using PlotlyDocumenter
 using PlotlyDocumenter: change_default_plotly_version, DEFAULT_VERSION
 using Test
-using PlotlyBase
-using PlotlyLight
-using PlotlyJS
+import PlotlyBase
+import PlotlyLight
+import PlotlyJS
 
 @testset "PlotlyDocumenter.jl" begin
     function to_str(o) 
@@ -15,7 +15,7 @@ using PlotlyJS
 
     y = rand(4)
     p_base = PlotlyBase.Plot(scatter(;y))
-    p_js = plot(y);
+    p_js = PlotlyJS.plot(y);
     p_light = PlotlyLight.Plot(;y, type="scatter")
 
     for p in (p_base,p_light, p_js)

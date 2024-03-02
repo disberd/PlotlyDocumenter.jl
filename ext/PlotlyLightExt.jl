@@ -4,7 +4,12 @@ module PlotlyLightExt
     using PlotlyLight
     import PlotlyLight.JSON3
     
-    const settings = PlotlyLight.DEFAULT_SETTINGS
+    const settings = if isdefined(PlotlyLight, :DEFAULT_SETTINGS) 
+        # This is for PlotlyLight < v0.8
+        PlotlyLight.DEFAULT_SETTINGS 
+    else 
+        PlotlyLight.settings
+    end
 
     function PlotlyDocumenter.to_documenter(p::PlotlyLight.Plot; kwargs...)
         data = JSON3.write(p.data)

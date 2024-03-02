@@ -14,7 +14,7 @@ import PlotlyJS
 
 
     y = rand(4)
-    p_base = PlotlyBase.Plot(scatter(;y))
+    p_base = PlotlyBase.Plot(PlotlyBase.scatter(;y))
     p_js = PlotlyJS.plot(y);
     p_light = PlotlyLight.Plot(;y, type="scatter")
 

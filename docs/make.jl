@@ -16,6 +16,7 @@ makedocs(;
         edit_link="main",
         assets=String[],
     ),
+    pagesonly=true,
     pages=[
         "Home" => "index.md",
         "DocumenterVitepress" => "vitepress.md",

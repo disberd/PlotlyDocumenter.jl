@@ -15,6 +15,6 @@ module PlotlyLightExt
         data = JSON3.write(p.data)
         layout = JSON3.write(merge(settings.layout, p.layout))
         config = JSON3.write(merge(settings.config, p.config))
-        return PlotlyDocumenter._to_documenter(;kwargs..., data, layout, config)
+        return PlotlyDocumenterPlot(data, layout, config, kwargs...)
     end
 end

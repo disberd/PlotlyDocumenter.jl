@@ -7,9 +7,7 @@ import PlotlyJS
 
 @testset "PlotlyDocumenter.jl" begin
     function to_str(o) 
-        io = IOBuffer()
-        show(io, o)
-        String(take!(io))
+        repr(MIME"text/html"(), o)
     end
 
 

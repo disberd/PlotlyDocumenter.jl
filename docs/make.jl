@@ -18,6 +18,7 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "DocumenterVitepress" => "vitepress.md",
     ],
 )
 

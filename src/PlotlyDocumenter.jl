@@ -6,6 +6,30 @@ using Random
 using Downloads: download
 
 export to_documenter
+export PlotlyDocumenterPlot
+
+"""
+    PlotlyDocumenterPlot
+
+A wrapper type for Plotly plot data that enables flexible rendering in different contexts.
+
+The plot data is stored as strings containing the JSON representation of the plot's data, layout and config.
+
+The `options` field contains rendering options that control how the plot is displayed. For the default 
+`text/html` MIME output, see [`to_documenter`](@ref) for more information.
+"""
+struct PlotlyDocumenterPlot
+    data::AbstractString
+    layout::AbstractString
+    config::AbstractString
+    options::Dict{Symbol,Any}
+
+    function PlotlyDocumenterPlot(data, layout, config, kwargs...)
+        options = Dict{Symbol,Any}(kwargs...)
+        return new(data, layout, config, options)
+    end
+end
+
 
 # Taken from PlotlyLight
 get_semver(x) = VersionNumber(match(r"v(\d+)\.(\d+)\.(\d+)", x).match[2:end])
@@ -16,6 +40,7 @@ function latest_plotlyjs_version()
     get_semver(read(file, String))
 end
 
+
 const DEFAULT_VERSION = v"2.24.2"
 const PLOTLY_VERSION = Ref(DEFAULT_VERSION)
 
@@ -25,15 +50,22 @@ Change the plotly version that is used by default to render Plotly plots using [
 """
 change_default_plotly_version(v) = PLOTLY_VERSION[]  = VersionNumber(string(v))
 
-function _to_documenter(;data, layout, config, version = PLOTLY_VERSION[], id = randstring(10), classes = [], style = (;))
+function Base.show(io::IO, ::MIME"text/html", x::PlotlyDocumenterPlot) 
     js = HypertextLiteral.JavaScript
+
+    version = get(x.options, :version, PLOTLY_VERSION[])
+    id = get(x.options, :id, randstring(10))
+    classes = get(x.options, :classes, [])
+    style = get(x.options, :style, (;))
+    
     v = js(string(version))
     plot_obj = (;
-        data = js(data),
-        layout = js(layout),
-        config = js(config),
+        data = js(x.data),
+        layout = js(x.layout), 
+        config = js(x.config),
     )
-    return @htl("""
+
+    rendered = @htl("""
     <div id=$id class=$classes style=$style></div>
     <script type="module">
         import Plotly from "https://esm.sh/plotly.js-dist-min@$v"
@@ -48,6 +80,7 @@ function _to_documenter(;data, layout, config, version = PLOTLY_VERSION[], id = 
         PLOT.style.height = plot_obj.layout.height ? "" : "100%"
     </script>
     """)
+    Base.show(io, MIME"text/html"(), rendered)
 end
 
 # Define the function name. Methods are added in the extension packages

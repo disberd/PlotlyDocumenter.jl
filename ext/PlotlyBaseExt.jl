@@ -6,6 +6,6 @@ module PlotlyBaseExt
         data = json(p.data)
         layout = json(p.layout)
         config = json(p.config)
-        return PlotlyDocumenter._to_documenter(;kwargs..., data, layout, config)
+        return PlotlyDocumenterPlot(data, layout, config, kwargs...)
     end
 end

@@ -1,5 +1,90 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>DocumenterVitepress · PlotlyDocumenter.jl</title><meta name="title" content="DocumenterVitepress · PlotlyDocumenter.jl"/><meta property="og:title" content="DocumenterVitepress · PlotlyDocumenter.jl"/><meta property="twitter:title" content="DocumenterVitepress · PlotlyDocumenter.jl"/><meta name="description" content="Documentation for PlotlyDocumenter.jl."/><meta property="og:description" content="Documentation for PlotlyDocumenter.jl."/><meta property="twitter:description" content="Documentation for PlotlyDocumenter.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">PlotlyDocumenter.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li class="is-active"><a class="tocitem" href>DocumenterVitepress</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>DocumenterVitepress</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>DocumenterVitepress</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/disberd/PlotlyDocumenter.jl/blob/main/docs/src/vitepress.md#" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Usage-with-DocumenterVitepress"><a class="docs-heading-anchor" href="#Usage-with-DocumenterVitepress">Usage with DocumenterVitepress</a><a id="Usage-with-DocumenterVitepress-1"></a><a class="docs-heading-anchor-permalink" href="#Usage-with-DocumenterVitepress" title="Permalink"></a></h1><p>PlotlyDocumenter provides an extension to work with DocumenterVitepress. As raw javascript code cannot be executed in Vue, an alternate approach is required. For this reason, when using DocumenterVitepress, the custom plot object will be rendered as the <code>&lt;VuePlotly/&gt;</code> component from the <a href="https://github.com/boscoh/vue3-plotly-ts">vue3-plotly-ts</a> package.</p><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>The keyword arguments for <code>to_documenter</code> are ignored when using DocumenterVitepress.</p></div></div><p>To make this work, first install the <code>vue3-plotly-ts</code> package in your project:</p><pre><code class="language-bash hljs">npm install vue3-plotly-ts</code></pre><p>Then, add the <code>VuePlotly</code> component to your <code>.vitepress/theme/index.ts</code> file:</p><pre><code class="language-typescript hljs">import VuePlotly from &quot;vue3-plotly-ts&quot;
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>DocumenterVitepress · PlotlyDocumenter.jl</title><meta name="title" content="DocumenterVitepress · PlotlyDocumenter.jl"/><meta property="og:title" content="DocumenterVitepress · PlotlyDocumenter.jl"/><meta property="twitter:title" content="DocumenterVitepress · PlotlyDocumenter.jl"/><meta name="description" content="Documentation for PlotlyDocumenter.jl."/><meta property="og:description" content="Documentation for PlotlyDocumenter.jl."/><meta property="twitter:description" content="Documentation for PlotlyDocumenter.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">PlotlyDocumenter.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li class="is-active"><a class="tocitem" href>DocumenterVitepress</a><ul class="internal"><li><a class="tocitem" href="#Explanation"><span>Explanation</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>DocumenterVitepress</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>DocumenterVitepress</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/disberd/PlotlyDocumenter.jl/blob/main/docs/src/vitepress.md#" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Usage-with-DocumenterVitepress"><a class="docs-heading-anchor" href="#Usage-with-DocumenterVitepress">Usage with DocumenterVitepress</a><a id="Usage-with-DocumenterVitepress-1"></a><a class="docs-heading-anchor-permalink" href="#Usage-with-DocumenterVitepress" title="Permalink"></a></h1><p>PlotlyDocumenter provides an extension to work with DocumenterVitepress. As raw javascript code cannot be executed in Vue, an alternate approach is required. For this reason, when using DocumenterVitepress, the custom plot object will be rendered as the <code>&lt;VuePlotly/&gt;</code> component.</p><div class="admonition is-warning"><header class="admonition-header">Warning</header><div class="admonition-body"><p>The keyword arguments for <code>to_documenter</code> are ignored when using DocumenterVitepress.</p></div></div><p>To make this work, first install the <code>plotly.js-dist-min</code> package and associated types <code>@types/plotly.js-dist-min</code> in your project:</p><pre><code class="language-bash hljs">npm install plotly.js-dist-min
+npm install --save-dev @types/plotly.js-dist-min</code></pre><p>Then, in your <code>docs/src/components</code> directory create a file called <code>PlotlyWrapper.vue</code> with the following content:</p><pre><code class="language-typescript hljs">&lt;template&gt;
+    &lt;div ref=&quot;divRef&quot; :id=&quot;plotlyId&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+import { onBeforeUnmount, ref, watchEffect } from &#39;vue&#39;
+import type { Data, Layout, Config } from &#39;plotly.js-dist-min&#39;
+
+const props = defineProps&lt;{
+    data?: Plotly.Data[]
+    layout?: Partial&lt;Plotly.Layout&gt;
+    config?: Partial&lt;Plotly.Config&gt;
+}&gt;();
+
+const randomString = Math.random().toString(36).slice(2, 7);
+const plotlyId = ref&lt;string&gt;(`plotly-${randomString}`);
+const divRef = ref&lt;Plotly.PlotlyHTMLElement&gt;();
+
+defineExpose({ plotlyId });
+
+function debounce&lt;Params extends any[]&gt;(
+    func: (...args: Params) =&gt; any,
+    timeout: number
+): (...args: Params) =&gt; void {
+    let timer: NodeJS.Timeout
+    return (...args: Params) =&gt; {
+        clearTimeout(timer)
+        timer = setTimeout(() =&gt; {
+            func(...args)
+        }, timeout)
+    }
+}
+
+// SSR check - everything after this will only run on the client
+if (typeof window == &#39;undefined&#39;) return;
+
+const Plotly = await import(&#39;plotly.js-dist-min&#39;);
+
+let isCreated = false
+
+function resize() {
+    Plotly.Plots.resize(divRef.value as Plotly.Root)
+}
+
+const resizeObserver = new ResizeObserver(debounce(resize, 50))
+
+watchEffect(async () =&gt; {
+    const data = props.data ? props.data : []
+    const div = divRef.value as Plotly.Root
+    if (isCreated) {
+        Plotly.react(div, data, props.layout, props.config)
+    } else if (div) {
+        await Plotly.newPlot(div, data, props.layout, props.config)
+        resizeObserver.observe(div as Plotly.PlotlyHTMLElement)
+        isCreated = true
+    }
+})
+
+onBeforeUnmount(() =&gt; {
+    resizeObserver.disconnect()
+    Plotly.purge(divRef.value as Plotly.Root)
+})
+&lt;/script&gt;</code></pre><p>and a component called <code>VuePlotly.vue</code> with the following content:</p><pre><code class="language-typescript hljs">&lt;template&gt;
+    &lt;Suspense&gt;
+        &lt;VuePlotly
+            :data=&quot;props.data&quot;
+            :layout=&quot;props.layout&quot;
+            :config=&quot;props.config&quot;
+        /&gt;
+        &lt;template #fallback&gt;
+            &lt;div&gt;Loading plot...&lt;/div&gt;
+        &lt;/template&gt;
+    &lt;/Suspense&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+import VuePlotly from &#39;./PlotlyWrapper.vue&#39;
+import type { Data, Layout, Config } from &#39;plotly.js-dist-min&#39;
+
+const props = defineProps&lt;{
+    data?: Data[]
+    layout?: Partial&lt;Layout&gt;
+    config?: Partial&lt;Config&gt;
+}&gt;()
+&lt;/script&gt; </code></pre><p>Finally, in your <code>docs/src/.vitepress/theme/index.ts</code> file, add the following code:</p><pre><code class="language-typescript hljs">import VuePlotly from &quot;../../components/VuePlotly.vue&quot;
 
 export default {
 ...
@@ -8,4 +93,4 @@ enhanceApp({ app, router, siteData }) {
     app.component(&#39;VuePlotly&#39;, VuePlotly);
     ...
 }
-} satisfies Theme</code></pre><p>In your <code>make.jl</code>, make sure you call <code>using PlotlyDocumenter</code> before <code>makedocs</code>.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Thursday 2 January 2025 17:11">Thursday 2 January 2025</span>. Using Julia version 1.11.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+} satisfies Theme</code></pre><p>In your <code>make.jl</code>, make sure you call <code>using PlotlyDocumenter</code> before <code>makedocs</code>.</p><h2 id="Explanation"><a class="docs-heading-anchor" href="#Explanation">Explanation</a><a id="Explanation-1"></a><a class="docs-heading-anchor-permalink" href="#Explanation" title="Permalink"></a></h2><p>Due to SSR requirements of vitepress, we have to import plotly.js dynamically. This is done in the <code>PlotlyWrapper.vue</code> component. Since this dynamic import requires a suspense boundary, this boundary is provided by the <code>VuePlotly.vue</code> component, which simply wraps the <code>PlotlyWrapper.vue</code> component.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Monday 13 January 2025 14:01">Monday 13 January 2025</span>. Using Julia version 1.11.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

@@ -24,17 +24,21 @@ PlotlyJSExt = "PlotlyJS"
 PlotlyLightExt = ["PlotlyLight", "JSON3"]
 
 [compat]
+Documenter = "1"
+DocumenterVitepress = "0.1 - 0.3"
 Downloads = "1"
 HypertextLiteral = "0.9"
 JSON = "0.21, 1"
 JSON3 = "1"
+PlotlyBase = "0.8"
+PlotlyJS = "0.18"
+PlotlyLight = "0.8 - 0.13"
 julia = "1.10"
 
 [extras]
 PlotlyBase = "a03496cd-edff-5a9b-9e67-9cda94a718b5"
-PlotlyJS = "f0f68f2c-4968-5e81-91da-67840de0976a"
 PlotlyLight = "ca7969ec-10b3-423e-8d99-40f33abb42bf"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test", "PlotlyBase", "PlotlyLight", "PlotlyJS"]
+test = ["Test", "PlotlyBase", "PlotlyLight"]

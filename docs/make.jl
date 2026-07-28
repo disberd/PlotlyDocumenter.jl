@@ -33,6 +33,7 @@ if should_deploy
 
 deploydocs(
     repo = "github.com/disberd/PlotlyDocumenter.jl.git",
+    push_preview = true,
 )
 
 end

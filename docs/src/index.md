@@ -42,6 +42,6 @@ to_documenter(p)
 using PlotlyDocumenter
 using PlotlyLight
 
-p = Plot(;y = rand(5), type = "scatter")
+p = Plot(Config(;y = rand(5), type = "scatter"))
 to_documenter(p)
 ```

@@ -8,6 +8,17 @@ export to_documenter
 export PlotlyDocumenterPlot
 
 """
+    escape_lt(s)
+Replace every `<` in the serialized JSON `s` with its `\\u003c` escape.
+
+The JSON is emitted verbatim inside a `<script>` element, where a `</script>`
+or `<!--` sequence would terminate the element early. JSON structural syntax
+contains no `<`, so this only ever rewrites string values, and `\\u003c` is a
+valid escape both in a JavaScript object literal and in JSON itself.
+"""
+escape_lt(s::AbstractString) = replace(s, "<" => "\\u003c")
+
+"""
     PlotlyDocumenterPlot
 
 A wrapper type for Plotly plot data that enables flexible rendering in different contexts.
@@ -25,7 +36,7 @@ struct PlotlyDocumenterPlot
 
     function PlotlyDocumenterPlot(data, layout, config, kwargs...)
         options = Dict{Symbol,Any}(kwargs...)
-        return new(data, layout, config, options)
+        return new(escape_lt(data), escape_lt(layout), escape_lt(config), options)
     end
 end
 

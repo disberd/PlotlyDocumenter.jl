@@ -1,6 +1,5 @@
 module PlotlyDocumenter
 
-using PackageExtensionCompat
 using HypertextLiteral
 using Random
 using Downloads: download
@@ -110,10 +109,6 @@ This package supports the following types as `P`:
 function to_documenter(x::P) where P
     error("The provided plot type $P does not have an associated method.
     Remember to also import the plotly plotting package of your choice.")
-end
-
-function __init__()
-    @require_extensions
 end
 
 end

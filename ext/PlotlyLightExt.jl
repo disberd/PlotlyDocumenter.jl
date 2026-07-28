@@ -2,19 +2,17 @@ module PlotlyLightExt
     using HypertextLiteral
     using PlotlyDocumenter
     using PlotlyLight
-    import PlotlyLight.JSON3
-    
-    const settings = if isdefined(PlotlyLight, :DEFAULT_SETTINGS) 
-        # This is for PlotlyLight < v0.8
-        PlotlyLight.DEFAULT_SETTINGS 
-    else 
-        PlotlyLight.settings
-    end
+    using JSON3
+
+    # JSON3 rejects non-finite numbers unless `allow_inf` is set. It writes them
+    # as the JavaScript literals `NaN`/`Infinity`, which Plotly reads as a break
+    # in a line -- the same meaning `null` carries on the PlotlyBase side.
+    write_json(x) = JSON3.write(x; allow_inf = true)
 
     function PlotlyDocumenter.to_documenter(p::PlotlyLight.Plot; kwargs...)
-        data = JSON3.write(p.data)
-        layout = JSON3.write(merge(settings.layout, p.layout))
-        config = JSON3.write(merge(settings.config, p.config))
+        data = write_json(p.data)
+        layout = write_json(merge(PlotlyLight.settings.layout, p.layout))
+        config = write_json(merge(PlotlyLight.settings.config, p.config))
         return PlotlyDocumenterPlot(data, layout, config, kwargs...)
     end
 end
